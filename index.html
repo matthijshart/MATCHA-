@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Één druk op de knop en je ziet de dichtstbijzijnde plekken om matcha te halen in Amsterdam, vanaf de Leliegracht."
+    content="Één druk op de knop en je ziet de dichtstbijzijnde plekken om matcha te halen in Amsterdam."
   />
   <style>
     :root {
@@ -116,105 +116,123 @@
       font-size: 0.9rem;
     }
 
-    /* Big round button */
-
     .button-wrapper {
       display: flex;
       justify-content: center;
       width: 100%;
     }
 
-  .matcha-button {
-  width: 230px;
-  height: 230px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 25%, #d9fddf 0%, #8ae6a5 45%, #3eb86c 85%);
-  border: none;
-  cursor: pointer;
-  position: relative;
-  box-shadow:
-    0 12px 25px rgba(0, 0, 0, 0.15),
-    inset 0 4px 10px rgba(255, 255, 255, 0.5),
-    inset 0 -6px 14px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #0d3b1f;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
-  overflow: hidden;
-}
+    /* MATCHA CUP BUTTON */
 
-/* Outer glow ring */
-.matcha-button::after {
-  content: "";
-  position: absolute;
-  inset: -15px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(108, 235, 158, 0.6), rgba(0, 0, 0, 0) 70%);
-  filter: blur(18px);
-  opacity: 0.65;
-  z-index: -1;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
+    .matcha-button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0;
+      outline: none;
+    }
 
-/* Button text */
-.matcha-button span {
-  font-size: 1.1rem;
-}
+    .cup {
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 18px 35px rgba(15, 23, 42, 0.35),
+        0 0 0 10px rgba(0, 0, 0, 0.06),
+        inset 0 3px 8px rgba(255, 255, 255, 0.5);
+      overflow: hidden;
+      background: #0f172a;
+      transition: transform 0.2s ease, box-shadow 0.25s ease;
+    }
 
-.matcha-button small {
-  font-size: 0.75rem;
-  opacity: 0.85;
-  margin-top: 0.25rem;
-}
+    .cup-image {
+      position: absolute;
+      inset: 7%;
+      border-radius: 50%;
+      background-image: url("matcha-latte-basisrecept.webp");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.1);
+    }
 
-/* Hover = elegant lift + stronger glow */
-.matcha-button:hover {
-  transform: translateY(-6px) scale(1.04);
-  box-shadow:
-    0 20px 35px rgba(0, 0, 0, 0.18),
-    inset 0 5px 12px rgba(255, 255, 255, 0.6),
-    inset 0 -8px 20px rgba(0, 0, 0, 0.12);
-  filter: brightness(1.05);
-}
+    .cup-overlay {
+      position: absolute;
+      inset: 7%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.14), transparent 60%);
+      mix-blend-mode: screen;
+    }
 
-.matcha-button:hover::after {
-  opacity: 0.9;
-  transform: scale(1.15);
-}
+    /* “Latte art” icon in het kopje */
+    .cup-art {
+      position: relative;
+      z-index: 2;
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 18px rgba(24, 24, 27, 0.35),
+        inset 0 0 10px rgba(76, 255, 171, 0.25);
+    }
 
-/* Active (tap) */
-.matcha-button:active {
-  transform: translateY(2px) scale(0.97);
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.22),
-    inset 0 3px 8px rgba(255, 255, 255, 0.4),
-    inset 0 -5px 12px rgba(0, 0, 0, 0.12);
-  filter: brightness(0.96);
-}
+    .cup-art svg {
+      width: 28px;
+      height: 28px;
+      fill: none;
+      stroke: #166534;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-/* Focus ring (keyboard) */
-.matcha-button:focus-visible {
-  outline: 4px solid rgba(56, 189, 113, 0.5);
-  outline-offset: 10px;
-}
+    /* Text onder de kop, maar nog steeds onderdeel van de knop */
+    .button-label span {
+      display: block;
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
 
-/* Mobile scaling */
-@media (max-width: 520px) {
-  .matcha-button {
-    width: 200px;
-    height: 200px;
-  }
-  .matcha-button span {
-    font-size: 1rem;
-  }
-}
+    .button-label small {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
 
-    /* Results list */
+    .matcha-button:hover .cup {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow:
+        0 26px 50px rgba(15, 23, 42, 0.5),
+        0 0 0 10px rgba(0, 0, 0, 0.08),
+        inset 0 4px 10px rgba(255, 255, 255, 0.6);
+    }
+
+    .matcha-button:active .cup {
+      transform: translateY(1px) scale(0.97);
+      box-shadow:
+        0 12px 24px rgba(15, 23, 42, 0.5),
+        0 0 0 8px rgba(0, 0, 0, 0.08),
+        inset 0 2px 6px rgba(255, 255, 255, 0.5);
+    }
+
+    .matcha-button:focus-visible .cup {
+      outline: 4px solid rgba(34, 197, 94, 0.6);
+      outline-offset: 8px;
+    }
+
+    /* Resultatenlijst */
 
     .results {
       width: 100%;
@@ -350,9 +368,9 @@
         padding: 1.8rem 1.4rem 1.6rem;
       }
 
-      .matcha-button {
-        width: 180px;
-        height: 180px;
+      .cup {
+        width: 190px;
+        height: 190px;
       }
 
       h1 {
@@ -382,9 +400,9 @@
         <p class="subtitle">
           Eén druk op de knop en je ziet de dichtstbijzijnde matcha-spots.
         </p>
-        <div class="location-pill" aria-label="Huidige vaste locatie">
+        <div class="location-pill" aria-label="Basislocatie">
           <span>📍</span>
-          <span>Leliegracht, Amsterdam (vast ingesteld)</span>
+          <span>Leliegracht, Amsterdam (fallback)</span>
         </div>
       </header>
 
@@ -396,8 +414,21 @@
           aria-expanded="false"
           aria-controls="results"
         >
-          <span>Vind matcha in de buurt</span>
-          <small>vanaf Leliegracht</small>
+          <div class="cup">
+            <div class="cup-image"></div>
+            <div class="cup-overlay"></div>
+            <div class="cup-art" aria-hidden="true">
+              <!-- simpele “location pin” als latte art -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-5-5.2-5-9.2A5 5 0 0 1 12 7a5 5 0 0 1 5 4.8C17 15.8 12 21 12 21z" />
+                <circle cx="12" cy="11.5" r="1.7" />
+              </svg>
+            </div>
+          </div>
+          <div class="button-label">
+            <span>Vind matcha in de buurt</span>
+            <small>we gebruiken je locatie als je dat toestaat</small>
+          </div>
         </button>
       </div>
 
@@ -538,57 +569,54 @@
         </article>
 
         <p class="footer-note">
-          Nu zijn de routes ingesteld vanaf de Leliegracht. In een volgende versie
-          kunnen we je echte locatie gebruiken.
+          Als je locatie niet wordt gedeeld, gebruiken we Leliegracht als startpunt.
         </p>
       </section>
     </div>
   </div>
 
-<script>
-  const button = document.getElementById("findButton");
-  const results = document.getElementById("results");
+  <script>
+    const button = document.getElementById("findButton");
+    const results = document.getElementById("results");
 
-  // 1. Toggle tonen/verbergen resultaten
-  button.addEventListener("click", () => {
-    const isVisible = results.classList.toggle("visible");
-    button.setAttribute("aria-expanded", isVisible ? "true" : "false");
+    button.addEventListener("click", () => {
+      const isVisible = results.classList.toggle("visible");
+      button.setAttribute("aria-expanded", isVisible ? "true" : "false");
 
-    // Indien zichtbaar: probeer locatie te laden
-    if (isVisible) {
-      updateLinksWithLocation();
-    }
-  });
-
-  // 2. Dynamische Google Maps links maken vanuit user location
-  function updateLinksWithLocation() {
-    if (!navigator.geolocation) {
-      console.warn("Locatie niet toegestaan / niet beschikbaar.");
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-
-        const origin = `${lat},${lon}`;
-
-        // Alle maps-links pakken en origin dynamisch invoegen
-        document.querySelectorAll(".maps-link").forEach((link) => {
-          const url = new URL(link.href);
-
-          url.searchParams.set("origin", origin);
-          url.searchParams.set("travelmode", "walking");
-
-          link.href = url.toString();
-        });
-      },
-      (err) => {
-        console.warn("Locatie kon niet worden opgehaald:", err.message);
+      if (isVisible) {
+        updateLinksWithLocation();
       }
-    );
-  }
-</script>
+    });
+
+    // Gebruik echte locatie als origin in Google Maps links (als toegestaan)
+    function updateLinksWithLocation() {
+      if (!navigator.geolocation) {
+        console.warn("Locatie niet beschikbaar in deze browser.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude;
+          const lon = pos.coords.longitude;
+          const origin = `${lat},${lon}`;
+
+          document.querySelectorAll(".maps-link").forEach((link) => {
+            try {
+              const url = new URL(link.href);
+              url.searchParams.set("origin", origin);
+              url.searchParams.set("travelmode", "walking");
+              link.href = url.toString();
+            } catch (e) {
+              console.warn("Kon Maps-URL niet updaten:", e);
+            }
+          });
+        },
+        (err) => {
+          console.warn("Locatie kon niet worden opgehaald:", err.message);
+        }
+      );
+    }
+  </script>
 </body>
 </html>
