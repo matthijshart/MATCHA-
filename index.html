@@ -513,14 +513,50 @@
     </div>
   </div>
 
-  <script>
-    const button = document.getElementById("findButton");
-    const results = document.getElementById("results");
+<script>
+  const button = document.getElementById("findButton");
+  const results = document.getElementById("results");
 
-    button.addEventListener("click", () => {
-      const isVisible = results.classList.toggle("visible");
-      button.setAttribute("aria-expanded", isVisible ? "true" : "false");
-    });
-  </script>
+  // 1. Toggle tonen/verbergen resultaten
+  button.addEventListener("click", () => {
+    const isVisible = results.classList.toggle("visible");
+    button.setAttribute("aria-expanded", isVisible ? "true" : "false");
+
+    // Indien zichtbaar: probeer locatie te laden
+    if (isVisible) {
+      updateLinksWithLocation();
+    }
+  });
+
+  // 2. Dynamische Google Maps links maken vanuit user location
+  function updateLinksWithLocation() {
+    if (!navigator.geolocation) {
+      console.warn("Locatie niet toegestaan / niet beschikbaar.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
+        const origin = `${lat},${lon}`;
+
+        // Alle maps-links pakken en origin dynamisch invoegen
+        document.querySelectorAll(".maps-link").forEach((link) => {
+          const url = new URL(link.href);
+
+          url.searchParams.set("origin", origin);
+          url.searchParams.set("travelmode", "walking");
+
+          link.href = url.toString();
+        });
+      },
+      (err) => {
+        console.warn("Locatie kon niet worden opgehaald:", err.message);
+      }
+    );
+  }
+</script>
 </body>
 </html>
