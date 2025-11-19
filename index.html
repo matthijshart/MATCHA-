@@ -124,63 +124,95 @@
       width: 100%;
     }
 
-    .matcha-button {
-      width: 200px;
-      height: 200px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      background: radial-gradient(circle at 30% 20%, #bbf7d0, #16a34a 60%, #166534 100%);
-      box-shadow: 0 20px 45px rgba(22, 163, 74, 0.55);
-      color: #ecfdf5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.25rem;
-      font-size: 1rem;
-      font-weight: 600;
-      text-align: center;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-      position: relative;
-      overflow: hidden;
-    }
+  .matcha-button {
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #d9fddf 0%, #8ae6a5 45%, #3eb86c 85%);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.15),
+    inset 0 4px 10px rgba(255, 255, 255, 0.5),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #0d3b1f;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  overflow: hidden;
+}
 
-    .matcha-button span {
-      padding: 0 1rem;
-    }
+/* Outer glow ring */
+.matcha-button::after {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108, 235, 158, 0.6), rgba(0, 0, 0, 0) 70%);
+  filter: blur(18px);
+  opacity: 0.65;
+  z-index: -1;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
 
-    .matcha-button::after {
-      content: "";
-      position: absolute;
-      inset: 10%;
-      border-radius: inherit;
-      border: 1px solid rgba(240, 253, 250, 0.28);
-      opacity: 0.8;
-    }
+/* Button text */
+.matcha-button span {
+  font-size: 1.1rem;
+}
 
-    .matcha-button small {
-      font-size: 0.75rem;
-      opacity: 0.9;
-      font-weight: 400;
-    }
+.matcha-button small {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  margin-top: 0.25rem;
+}
 
-    .matcha-button:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 26px 60px rgba(22, 163, 74, 0.7);
-      filter: brightness(1.05);
-    }
+/* Hover = elegant lift + stronger glow */
+.matcha-button:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow:
+    0 20px 35px rgba(0, 0, 0, 0.18),
+    inset 0 5px 12px rgba(255, 255, 255, 0.6),
+    inset 0 -8px 20px rgba(0, 0, 0, 0.12);
+  filter: brightness(1.05);
+}
 
-    .matcha-button:active {
-      transform: translateY(1px) scale(0.99);
-      box-shadow: 0 12px 30px rgba(22, 163, 74, 0.6);
-      filter: brightness(0.98);
-    }
+.matcha-button:hover::after {
+  opacity: 0.9;
+  transform: scale(1.15);
+}
 
-    .matcha-button:focus-visible {
-      outline: 3px solid #22c55e;
-      outline-offset: 6px;
-    }
+/* Active (tap) */
+.matcha-button:active {
+  transform: translateY(2px) scale(0.97);
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.22),
+    inset 0 3px 8px rgba(255, 255, 255, 0.4),
+    inset 0 -5px 12px rgba(0, 0, 0, 0.12);
+  filter: brightness(0.96);
+}
+
+/* Focus ring (keyboard) */
+.matcha-button:focus-visible {
+  outline: 4px solid rgba(56, 189, 113, 0.5);
+  outline-offset: 10px;
+}
+
+/* Mobile scaling */
+@media (max-width: 520px) {
+  .matcha-button {
+    width: 200px;
+    height: 200px;
+  }
+  .matcha-button span {
+    font-size: 1rem;
+  }
+}
 
     /* Results list */
 
